@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.zomato.webApp.services.RestaurantService;
 
 @RestController
 @RequestMapping("/restaurants")     
+@CrossOrigin(origins = "https://zomatoo-clone.web.app")
 public class RestaurantController {
 
     @Autowired
@@ -47,8 +49,8 @@ public class RestaurantController {
 
     @GetMapping("/nearby")
     public List<Restaurant> getRestaurantsNearby(
-            @RequestParam(value = "latitude", required = true) double lat,
-            @RequestParam(value = "longitude", required = true) double lon,
+            @RequestParam(value = "latitude", required = true) Double lat,
+            @RequestParam(value = "longitude", required = true) Double lon,
             @RequestParam(value = "radius", defaultValue = "3000", required = false) double radius) {
         return restaurantRepository.findRestaurantsByLocation(lat, lon, radius);
     }
