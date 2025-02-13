@@ -49,8 +49,8 @@ public class RestaurantController {
 
     @GetMapping("/nearby")
     public List<Restaurant> getRestaurantsNearby(
-            @RequestParam(value = "latitude", required = true) Double lat,
-            @RequestParam(value = "longitude", required = true) Double lon,
+            @RequestParam(value = "latitude", required = true) double lat,
+            @RequestParam(value = "longitude", required = true) double lon,
             @RequestParam(value = "radius", defaultValue = "3000", required = false) double radius) {
         return restaurantRepository.findRestaurantsByLocation(lat, lon, radius);
     }
